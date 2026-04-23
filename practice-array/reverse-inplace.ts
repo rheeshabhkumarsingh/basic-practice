@@ -19,16 +19,17 @@ Reverse the given array in-place.
 // }
 
 let array = [1,2,3,4];
-function swap<T>(i: number, j: number, arr: T[]) {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-}
+// function swap<T>(i: number, j: number, arr: T[]) {
+//     let temp = arr[i];
+//     arr[i] = arr[j];
+//     arr[j] = temp;
+// }
 
 let i =0;
 let j = array.length -1;
 while(j>i) {
-    swap(i, j, array);
+    // swap(i, j, array);
+    [array[i], array[j]] = [array[j], array[i]];
     i++;
     j--;
 }
