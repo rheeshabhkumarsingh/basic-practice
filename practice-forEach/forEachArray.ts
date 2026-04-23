@@ -1,4 +1,4 @@
-type Callback<T> = (element: T, index?: number, array?: T[]) => void
+type Callback<T> = (element: T, index?: number, array?: T[]) => any
 
 class MyArray<T>{
     array: T[];
@@ -19,6 +19,14 @@ class MyArray<T>{
         }
         return newArray;
     }
+
+    myFilter(callback: Callback<T>) {
+        for(let i = 0; i < this.array.length; i++) {
+            if(callback(this.array[i], i, this.array)) {
+                return this.array[i];
+            }
+        }
+    }
 }
 
 const arr = new MyArray([1, 2, 3]);
@@ -30,4 +38,9 @@ let newArr = arr.myMap((element) => {
     return element*2;
 })
 console.log(newArr)
+
+let val = arr.myFilter(element => {
+    return element%2 === 0;
+})
+console.log(val)
 

@@ -16,6 +16,13 @@ class MyArray {
         }
         return newArray;
     }
+    myFilter(callback) {
+        for (let i = 0; i < this.array.length; i++) {
+            if (callback(this.array[i], i, this.array)) {
+                return this.array[i];
+            }
+        }
+    }
 }
 const arr = new MyArray([1, 2, 3]);
 arr.myForEach((element) => {
@@ -25,3 +32,7 @@ let newArr = arr.myMap((element) => {
     return element * 2;
 });
 console.log(newArr);
+let val = arr.myFilter(element => {
+    return element % 2 === 0;
+});
+console.log(val);
