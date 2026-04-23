@@ -17,11 +17,13 @@ class MyArray {
         return newArray;
     }
     myFilter(callback) {
+        let result = [];
         for (let i = 0; i < this.array.length; i++) {
             if (callback(this.array[i], i, this.array)) {
-                return this.array[i];
+                result.push(this.array[i]);
             }
         }
+        return result;
     }
 }
 const arr = new MyArray([1, 2, 3]);

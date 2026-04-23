@@ -21,11 +21,13 @@ class MyArray<T>{
     }
 
     myFilter(callback: Callback<T>) {
+        let result: T[] = [];
         for(let i = 0; i < this.array.length; i++) {
             if(callback(this.array[i], i, this.array)) {
-                return this.array[i];
+                result.push(this.array[i]);
             }
         }
+        return result;
     }
 }
 
