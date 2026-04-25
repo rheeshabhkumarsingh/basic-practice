@@ -24,5 +24,24 @@ function moveZero<T>(arr: T[]): T[] {
     console.log(arr)
     return arr;
 }
+/*
+moveZero output is not matching expected output:
+[ 12, 1, 3, 0, 0 ] which is not expected
+*/
+
+
+
+function moveAtEnd(arr: any[]) {
+    let prev = arr[0];
+    for(let i = 0; i<arr.length; i++) {
+        if(arr[i]===0){
+            const removed = arr.splice(i,1);
+            arr = [...arr, ...removed]
+        }
+    }
+    console.log(arr);
+}
 
 moveZero([0,1,0,3,12])
+moveAtEnd([0,1,0,3,12])
+
