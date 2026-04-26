@@ -32,7 +32,7 @@ moveZero output is not matching expected output:
 
 
 function moveAtEnd(arr: any[]) {
-    let prev = arr[0];
+    // let prev = arr[0];
     for(let i = 0; i<arr.length; i++) {
         if(arr[i]===0){
             const removed = arr.splice(i,1);
@@ -42,6 +42,48 @@ function moveAtEnd(arr: any[]) {
     console.log(arr);
 }
 
+//above approach is also wrong:
+/*
+splice() is O(n) → inside loop = O(n²)
+Reassigning arr doesn’t affect original array outside function
+Also can skip elements after removal (index shifting bug)
+*/
+
 moveZero([0,1,0,3,12])
 moveAtEnd([0,1,0,3,12])
 
+// correct approach
+function moveZeroes(arr: number[]): number[] {
+    let insertPos = 0;
+
+    // Move non-zero elements forward
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] !== 0) {
+            arr[insertPos] = arr[i];
+            insertPos++;
+        }
+    }
+
+    // Fill remaining with zeros
+    while (insertPos < arr.length) {
+        arr[insertPos] = 0;
+        insertPos++;
+    }
+
+    return arr;
+}
+
+//Alternative (Swap-based, still stable)
+
+function moveZeroesCorrect(arr: number[]): number[] {
+    let j = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] !== 0) {
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+            j++;
+        }
+    }
+
+    return arr;
+}
